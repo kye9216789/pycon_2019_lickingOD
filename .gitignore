@@ -1,1 +1,4 @@
 data/
+.ipynp_checkpoints/
+.gitignore
+*.pyc
