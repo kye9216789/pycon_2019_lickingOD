@@ -11,8 +11,9 @@ def anchor_inside_flags(flat_anchors, valid_flags, img_shape,
     """
     img_h, img_w = img_shape[:2]
     if allowed_border >= 0:
+        pass
+        #TODO inside_flags = valid_flags &
 
-        inside_flags = valid_flags &  #TODO
     else:
         inside_flags = valid_flags
     return inside_flags

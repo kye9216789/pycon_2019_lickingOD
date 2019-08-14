@@ -19,14 +19,14 @@ def bbox_overlaps(bboxes1, bboxes2):
     if rows * cols == 0:
         return bboxes1.new(rows, 1) if is_aligned else bboxes1.new(rows, cols)
 
-    lt =  # [rows, cols, 2] #TODO
-    rb =  # [rows, cols, 2] #TODO
+    #TODO lt =  # [rows, cols, 2]
+    #TODO rb =  # [rows, cols, 2]
 
-    wh =  # [rows, cols, 2] #TODO
-    overlap = #TODO
-    area1 = #TODO
+    #TODO wh =  # [rows, cols, 2]
+    #TODO overlap =
+    #TODO area1 =
 
-    area2 = #TODO
+    #TODO area2 =
     ious = overlap / (area1[:, None] + area2 - overlap)
 
     return ious

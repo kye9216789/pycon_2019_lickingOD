@@ -11,7 +11,7 @@ def loss_single(cls_score, bbox_pred, labels, label_weights,
     print("label shape : ", describe(labels))
     label_weights = label_weights.reshape(-1, cls_out_channels)
     print("class score shape before reshape : ", describe(cls_score))
-    cls_score = cls_score. #TODO
+    #TODO cls_score = cls_score.
 
     assert (describe(labels) == describe(cls_score))
     loss_cls = weighted_sigmoid_focal_loss(
@@ -27,7 +27,7 @@ def loss_single(cls_score, bbox_pred, labels, label_weights,
     print("bbox target shape : ", describe(bbox_targets))
     bbox_weights = bbox_weights.reshape(-1, 4)
     print("bbox pred shape before reshape : ", describe(bbox_pred))
-    bbox_pred = bbox_pred. #TODO
+    #TODO bbox_pred = bbox_pred.
     assert (describe(bbox_targets) == describe(bbox_pred))
     loss_reg = weighted_smoothl1(
         bbox_pred,

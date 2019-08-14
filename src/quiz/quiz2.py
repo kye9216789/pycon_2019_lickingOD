@@ -9,6 +9,6 @@ def images_to_levels(target, num_level_anchors):
     start = 0
     for n in num_level_anchors:
         end = start + n
-        level_targets.append() #TODO
+        #TODO level_targets.append()
         start = end
     return level_targets

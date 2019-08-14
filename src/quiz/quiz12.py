@@ -12,11 +12,11 @@ def gen_base_anchors(base_size, scales, ratios):
     x_ctr = 0.5 * (w - 1)
     y_ctr = 0.5 * (h - 1)
 
-    h_ratios =  #TODO
-    w_ratios =  #TODO
+    #TODO h_ratios =
+    #TODO w_ratios =
 
-    ws = (w * ).view(-1) #TODO
-    hs = (h * ).view(-1) #TODO
+    #TODO ws = (w * ).view(-1)
+    #TODO hs = (h * ).view(-1)
 
     #base_anchors : list([x1, y1, x2, y2])
     base_anchors = torch.stack(

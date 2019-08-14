@@ -23,14 +23,14 @@ def delta2bbox(rois,
     py = ((rois[:, 1] + rois[:, 3]) * 0.5).unsqueeze(1).expand_as(dy)
     pw = (rois[:, 2] - rois[:, 0] + 1.0).unsqueeze(1).expand_as(dw)
     ph = (rois[:, 3] - rois[:, 1] + 1.0).unsqueeze(1).expand_as(dh)
-    gw =  #TODO
-    gh =   #TODO
+    #TODO gw =
+    #TODO gh =
     gx = torch.addcmul(px, 1, pw, dx)  # gx = px + pw * dx
     gy = torch.addcmul(py, 1, ph, dy)  # gy = py + ph * dy
-    x1 =  + 0.5  #TODO
-    y1 =  + 0.5  #TODO
-    x2 =  - 0.5  #TODO
-    y2 =  - 0.5  #TODO
+    #TODO x1 =  + 0.5
+    #TODO y1 =  + 0.5
+    #TODO x2 =  - 0.5
+    #TODO y2 =  - 0.5
     if max_shape is not None:
         x1 = x1.clamp(min=0, max=max_shape[1] - 1)
         y1 = y1.clamp(min=0, max=max_shape[0] - 1)

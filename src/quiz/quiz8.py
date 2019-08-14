@@ -18,9 +18,9 @@ def get_bboxes(cls_scores, bbox_preds, img_metas, cfg,
     ]
     result_list = []
     for img_id in range(len(img_metas)):
-        cls_score_list =  #TODO
+        #TODO cls_score_list =
 
-        bbox_pred_list =  #TODO
+        #TODO bbox_pred_list =
 
         img_shape = img_metas[img_id]['img_shape']
         scale_factor = img_metas[img_id]['scale_factor']

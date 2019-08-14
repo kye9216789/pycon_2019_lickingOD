@@ -33,19 +33,20 @@ def assign_wrt_overlaps(overlaps, cfg_assigner):
 
     # 2. negative IoU threshold에 못 미치는 IoU를 갖는 anchor에 negative label을 할당합니다.
     #    1-1의 결과를 활용합니다.
-    assigned_gt_inds[] = 0 #TODO
+    #TODO assigned_gt_inds[] = 0
 
     # 3. positive IoU threshold보다 높은 IoU를 갖는 anchor에 positive label을 할당합니다.
     #    1-1의 결과를 활용합니다.
-    pos_inds =  #TODO
-    assigned_gt_inds[pos_inds] =  #TODO
+    #TODO pos_inds =
+    #TODO assigned_gt_inds[pos_inds] =
 
     # 4. 각 gt에 대하여 최소한의 IoU threshold를 넘는 anchor중 가장 높은 IoU를 갖는 anchor에 대하여 positive label을 할당합니다.
     #    1-2의 결과를 활용합니다.
     for i in range(num_gts):
         if gt_max_overlaps[i] >= mininum_positive_threshold:
-            max_iou_inds = (overlaps[] == gt_max_overlaps[]) #TODO
-            assigned_gt_inds[max_iou_inds] =  #TODO
+            #TODO max_iou_inds = (overlaps[] == gt_max_overlaps[])
+            #TODO assigned_gt_inds[max_iou_inds] =
+            pass
 
     return AssignResult(
         num_gts, assigned_gt_inds, max_overlaps)
