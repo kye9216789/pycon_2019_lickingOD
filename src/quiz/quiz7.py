@@ -9,20 +9,20 @@ def bbox2delta(proposals, gt, means=[0, 0, 0, 0], stds=[1, 1, 1, 1]):
 
     proposals = proposals.float()
     gt = gt.float()
-    #TODO px =  * 0.5
-    #TODO py =  * 0.5
-    #TODO pw =  + 1.0
-    #TODO ph =  + 1.0
+    px = (proposals[..., 0] + proposals[..., 2]) * 0.5 #TODO
+    py = (proposals[..., 1] + proposals[..., 3]) * 0.5 #TODO
+    pw = proposals[..., 2] - proposals[..., 0] + 1.0 #TODO
+    ph = proposals[..., 3] - proposals[..., 1] + 1.0 #TODO
 
-    #TODO gx =  * 0.5
-    #TODO gy =  * 0.5
-    #TODO gw =  + 1.0
-    #TODO gh =  + 1.0
+    gx = (gt[..., 0] + gt[..., 2]) * 0.5 #TODO
+    gy = (gt[..., 1] + gt[..., 3]) * 0.5 #TODO
+    gw = gt[..., 2] - gt[..., 0] + 1.0 #TODO
+    gh = gt[..., 3] - gt[..., 1] + 1.0 #TODO
 
-    #TODO dx =
-    #TODO dy =
-    #TODO dw =
-    #TODO dh =
+    dx = (gx - px) / pw #TODO
+    dy = (gy - py) / ph #TODO
+    dw = torch.log(gw / pw) #TODO
+    dh = torch.log(gh / ph) #TODO
     deltas = torch.stack([dx, dy, dw, dh], dim=-1)
 
     means = deltas.new_tensor(means).unsqueeze(0)

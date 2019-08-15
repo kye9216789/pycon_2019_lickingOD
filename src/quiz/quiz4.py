@@ -19,14 +19,16 @@ def bbox_overlaps(bboxes1, bboxes2):
     if rows * cols == 0:
         return bboxes1.new(rows, 1) if is_aligned else bboxes1.new(rows, cols)
 
-    #TODO lt =  # [rows, cols, 2]
-    #TODO rb =  # [rows, cols, 2]
+    lt = torch.max(bboxes1[:, None, :2], bboxes2[:, :2])  # [rows, cols, 2] #TODO
+    rb = torch.min(bboxes1[:, None, 2:], bboxes2[:, 2:])  # [rows, cols, 2] #TODO
 
-    #TODO wh =  # [rows, cols, 2]
-    #TODO overlap =
-    #TODO area1 =
+    wh = (rb - lt + 1).clamp(min=0)  # [rows, cols, 2] #TODO
+    overlap = wh[:, :, 0] * wh[:, :, 1] #TODO
+    area1 = (bboxes1[:, 2] - bboxes1[:, 0] + 1) * ( #TODO
+        bboxes1[:, 3] - bboxes1[:, 1] + 1) #TODO
 
-    #TODO area2 =
-    ious = overlap / (area1[:, None] + area2 - overlap)
+    area2 = (bboxes2[:, 2] - bboxes2[:, 0] + 1) * ( #TODO
+        bboxes2[:, 3] - bboxes2[:, 1] + 1) #TODO
+    ious = overlap / (area1[:, None] + area2 - overlap) #TODO
 
     return ious

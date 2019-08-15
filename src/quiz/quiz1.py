@@ -32,8 +32,8 @@ def get_anchors(anchor_generators, anchor_strides, featmap_sizes, img_metas):
             anchor_stride = anchor_strides[i]
             feat_h, feat_w = featmap_sizes[i]
             h, w, _ = img_meta['pad_shape']
-            #TODO valid_feat_h =
-            #TODO valid_feat_w =
+            valid_feat_h = min(int(np.ceil(h / anchor_stride)), feat_h) #TODO
+            valid_feat_w = min(int(np.ceil(w / anchor_stride)), feat_w) #TODO
             flags = anchor_generators[i].valid_flags(
                 (feat_h, feat_w), (valid_feat_h, valid_feat_w))
             multi_level_flags.append(flags)

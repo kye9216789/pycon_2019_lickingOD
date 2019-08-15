@@ -18,10 +18,12 @@ def get_bboxes(cls_scores, bbox_preds, img_metas, cfg,
     ]
     result_list = []
     for img_id in range(len(img_metas)):
-        #TODO cls_score_list =
-
-        #TODO bbox_pred_list =
-
+        cls_score_list = [ #TODO
+            cls_scores[i][img_id].detach() for i in range(num_levels) #TODO
+        ] #TODO
+        bbox_pred_list = [ #TODO
+            bbox_preds[i][img_id].detach() for i in range(num_levels) #TODO
+        ] #TODO
         img_shape = img_metas[img_id]['img_shape']
         scale_factor = img_metas[img_id]['scale_factor']
         proposals = get_bboxes_single(cls_score_list, bbox_pred_list,
