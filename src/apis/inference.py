@@ -62,4 +62,6 @@ def show_result(img, result, dataset='coco', score_thr=0.3):
         bboxes,
         labels,
         class_names=class_names,
-        score_thr=score_thr)
+        score_thr=score_thr,
+        out_file='img.jpg',
+        show_result = False)

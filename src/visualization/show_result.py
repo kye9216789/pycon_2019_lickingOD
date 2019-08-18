@@ -11,7 +11,7 @@ from src.core.utils import tensor2imgs
 from src.core import get_classes
 
 
-def show_result(data,
+def get_result(data,
                 result,
                 img_norm_cfg,
                 dataset=None,
@@ -23,7 +23,9 @@ def show_result(data,
 
     img_tensor = data['img'].data[0]
     img_metas = data['img_meta'].data[0]
-    imgs = tensor2imgs(img_tensor, **img_norm_cfg)
+    mean = img_norm_cfg.mean
+    std = img_norm_cfg.std
+    imgs = tensor2imgs(img_tensor, mean=mean, std=std, to_rgb=False)
     assert len(imgs) == len(img_metas)
 
     if isinstance(dataset, str):
@@ -34,7 +36,8 @@ def show_result(data,
         raise TypeError(
             'dataset must be a valid dataset name or a sequence'
             ' of class names, not {}'.format(type(dataset)))
-
+    
+    result_imgs = []
     for img, img_meta in zip(imgs, img_metas):
         h, w, _ = img_meta['img_shape']
         img_show = img[:h, :w, :]
@@ -55,13 +58,14 @@ def show_result(data,
             for i, bbox in enumerate(bbox_result)
         ]
         labels = np.concatenate(labels)
-        imshow_det_bboxes(
+        img = imshow_det_bboxes(
             img_show,
             bboxes,
             labels,
             class_names=class_names,
-            score_thr=score_thr,
-            wait_time=0)
+            score_thr=score_thr)
+        result_imgs.append(img)
+    return result_imgs
 
 
 class Color(Enum):
@@ -87,11 +91,7 @@ def imshow_det_bboxes(img,
                       bbox_color='green',
                       text_color='green',
                       thickness=1,
-                      font_scale=0.5,
-                      show=True,
-                      win_name='',
-                      wait_time=0,
-                      out_file=None):
+                      font_scale=0.5):
     """Draw bboxes and class labels (with scores) on an image.
 
     Args:
@@ -105,10 +105,6 @@ def imshow_det_bboxes(img,
         text_color (str or tuple or :obj:`Color`): Color of texts.
         thickness (int): Thickness of lines.
         font_scale (float): Font scales of texts.
-        show (bool): Whether to show the image.
-        win_name (str): The window name.
-        wait_time (int): Value of waitKey param.
-        out_file (str or None): The filename to write the image.
     """
     assert bboxes.ndim == 2
     assert labels.ndim == 1
@@ -138,11 +134,8 @@ def imshow_det_bboxes(img,
             label_text += '|{:.02f}'.format(bbox[-1])
         cv2.putText(img, label_text, (bbox_int[0], bbox_int[1] - 2),
                     cv2.FONT_HERSHEY_COMPLEX, font_scale, text_color)
+    return img
 
-    if show:
-        imshow(img, win_name, wait_time)
-    if out_file is not None:
-        imwrite(img, out_file)
 
 
 def color_val(color):
